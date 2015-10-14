@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
+	<link rel="stylesheet" href="css/estilo.css"/>
+	<title>Portfólio de Projetos - INF</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.button-collapse').sideNav();
+			$('.parallax').parallax();
+			$('.dropdown-button').dropdown({ hover: false });
+			var $grid = $('#conteudo-projeto');
+
+			$grid.shuffle({
+				itemSelector: '#conteudo-projeto div' 
+			});
+
+			$('.navegacao a').click(function (e) {
+				e.preventDefault();
+
+				$('.navegacao a').removeClass('ativo');
+				$(this).addClass('ativo');
+
+				var groupName = $(this).attr('data-group');
+
+				$grid.shuffle('shuffle', groupName );
+			});
+
+			$('nav a#mi').click(function (e) {
+				e.preventDefault();
+
+				$('nav a#mi').removeClass('ativo');
+				$(this).addClass('ativo');
+
+				var groupName = $(this).attr('data-group');
+
+				$grid.shuffle('shuffle', groupName );
+			});
+			
+		});
+		$('html').bind('keypress', function(e)
+		{
+			if(e.keyCode == 13)
+			{
+				return false;
+			}
+		});
+
+		function filtrar() {
+			var $grid = $('#conteudo-projeto');
+			$grid.shuffle({
+				itemSelector: '.row' // the selector for the items in the grid
+			});
+			var val = document.getElementById("pesquisa").value.toLowerCase();
+			
+			if(val!=null && val!=""){
+				str=document.getElementsByTagName("div");
+				for (i = 0; i < str.length; i++) {
+					if(str[i].id == "proj"){
+						var array = JSON.parse(str[i].getAttribute("data-groups"));
+						for(j=0; j<array.length;j++){
+							if(array[j].match(val)){
+								$grid.shuffle('shuffle', array[j]);
+							}
+						}
+					}
+				}
+			}
+			else{
+				$grid.shuffle('shuffle', "todas");
+			}
+		}
+	</script>
+</head>
+<body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>
+	<script src="js/jquery.shuffle.modernizr.min.js"></script>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper">
+				<a class="brand-logo" href="http://www.apoema.inf.ufg.br"><img  src="imagens/logo.png"/></a>
+				<ul id="nav-mobile" class="right side-nav">
+					<li>
+						<form>
+							<div class="input-field col s12">
+								<input id="pesquisa" type="text" placeholder="Pesquisar Projetos" onkeyup="filtrar()" required >
+								<label for="search"><i class="mdi-action-search black-text"></i></label>
+							</div>
+						</form>
+					</li>
+					<a id="mi" class="ativo" href="#" data-group="todas"><li><img src="imagens/icones/box2-24.png"/>Todas</li></a>
+					<a id="mi" href="#" data-group="agronegócio"><li><img src="imagens/icones/tractor-24.png"/>Agronegócio</li></a>
+					<a id="mi" href="#" data-group="educação"><li><img src="imagens/icones/student-24.png"/>Educação</li></a>
+					<a id="mi" href="#" data-group="engenharia"><li><img src="imagens/icones/engineering-24.png"/>Engenharia</li></a>
+					<a id="mi" href="#" data-group="informática"><li><img src="imagens/icones/globe-24.png"/>Informática</li></a>
+					<a id="mi" href="#" data-group="logística"><li><img src="imagens/icones/clock-24.png"/>Logística</li></a>
+					<a id="mi" href="#" data-group="meio ambiente"><li><img src="imagens/icones/leaf-24.png"/>Meio Ambiente</li></a>
+					<a id="mi" href="#" data-group="saúde"><li><img src="imagens/icones/pill-24.png"/>Saúde</li></a>
+				</ul>
+				<a class="button-collapse" data-activates="nav-mobile"><i class="mdi-navigation-menu"></i></a>
+			</div>
+		</nav>
+	</div>
+	<div class="cabecalho">
+		<h1>Portfólio de Projetos - INF</h1>
+	</div>
+	<div class="navegacao">
+		<ul>
+			<a class="ativo" href="#" data-group="todas"><li><img src="imagens/icones/box2-24b.png"/>Todas</li></a>
+			<a href="#" data-group="agronegócio"><li><img src="imagens/icones/tractor-24b.png"/>Agronegócio</li></a>
+			<a href="#" data-group="educação"><li><img src="imagens/icones/student-24b.png"/>Educação</li></a>
+			<a href="#" data-group="engenharia"><li><img src="imagens/icones/engineering-24b.png"/>Engenharia</li></a>
+			<a href="#" data-group="informática"><li><img src="imagens/icones/globe-24b.png"/>Informática</li></a>
+			<a href="#" data-group="logística"><li><img src="imagens/icones/clock-24b.png"/>Logística</li></a>
+			<a href="#" data-group="meio ambiente"><li><img src="imagens/icones/leaf-24b.png"/>Meio Ambiente</li></a>
+			<a href="#" data-group="saúde"><li><img src="imagens/icones/pill-24b.png"/>Saúde</li></a>
+		</ul>
+	</div>
+	<div id="conteudo-projeto" class="container">
+		<div id="proj" class="row" data-groups='["todas", "001", "1", "logística", "modelagem", "simulação", "melhoria", "tráfego", "urbano"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/001/index.html">
+						<div class="card-image">
+							<img src="imagens/001/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modelagem, Simulação e Melhoria do Tráfego Urbano</h7>
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p> 
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div id="proj" class="row" data-groups='["todas", "002", "2", "saúde", "desenvolvimento", "tecnologia assistiva", "portadores", "necessidades", "especiais","utilizando", "visão", "computador"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/002/index.html">
+						<div class="card-image">
+							<img src="imagens/002/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>Desenvolvimento de tecnologia assistiva para portadores de necessidades especiais utilizando visão por computador</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "003", "3", "agronegócio", "avaliação","funcional","bovinos","usando","visão","computacional"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/003/index.html">
+						<div class="card-image">
+							<img src="imagens/003/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>Avaliação funcional de bovinos usando visão computacional</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Agronegócio</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "004", "4", "agronegócio", "infra-estrutura", "suporte", "tecnologias", "móveis","automação","processos","agropecuária"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/004/index.html">
+						<div class="card-image">
+							<img src="imagens/004/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>Infra-estrutura de suporte de tecnologias móveis para a automação de processos na Agropecuária</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Agronegócio</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "005", "5", "informática" ,"cloud monitor","framework","monitoramento","gerenciamento","planejamento","capacidade","gestão", "dinâmica","recursos","computacionais","aplicações","ERP","distribuídas","nuvem"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/005/index.html">
+						<div class="card-image">
+							<img src="imagens/005/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>Cloud Monitor - Framework de monitoramento e gerenciamento para planejamento de capacidade e gestão dinâmica de recursos computacionais de aplicações ERP distribuídas em nuvem</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "006", "6", "educação", "c3s","content","sharing middleware","smart","spaces"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/006/index.html">
+						<div class="card-image">
+							<img src="imagens/006/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>C3S: A Content Sharing Middleware for Smart Spaces</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "007", "7", "engenharia", "calibração","automática","câmeras","robusta","distorções","radiais"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/007/index.html">
+						<div class="card-image">
+							<img src="imagens/007/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+
+							<h7>Calibração automática de câmeras robusta a distorções radiais</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "008", "8", "logística", "siniav","sistema","nacional","identificação","veicular"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/008/index.html">
+						<div class="card-image">
+							<img src="imagens/008/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>SINIAV – Sistema Nacional de Identificação Veicular</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "009", "9", "logística", "desenvolvimento","modelo","integração","modal","utilizando","geração","cenários","processo","hierárquico analítico","(ahp)"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/009/index.html">
+						<div class="card-image">
+							<img src="imagens/009/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Desenvolvimento de um modelo para integração modal utilizando geração de cenários e processo hierárquico analítico (AHP)</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "010", "10", "meio ambiente", "sigma","sistema","informação","geográfica","monitoramento","ambiental"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/010/index.html">
+						<div class="card-image">
+							<img src="imagens/010/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>SIGMA – Sistema de Informação Geográfica para Monitoramento Ambiental</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Meio Ambiente</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "011", "11", "informática", "sbstframe","framework","teste","software","baseado","busca"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/011/index.html">
+						<div class="card-image">
+							<img src="imagens/011/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>SBSTFrame: um framework para o teste de software baseado em busca</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "012", "12", "informática", "freetest","método","teste de software","desenvolvido","micro","pequenas","empresas","ti"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/012/index.html">
+						<div class="card-image">
+							<img src="imagens/012/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>FreeTest: método para o teste de software desenvolvido por micro e pequenas empresas de TI</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "013", "13", "saúde", "pneumocad","sistema","auxílio","diagnóstico","pneumonias","infância"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/013/index.html">
+						<div class="card-image">
+							<img src="imagens/013/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Pneumocad - Sistema de auxílio ao diagnóstico de pneumonias na Infância</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "014", "14", "saúde", "prontuário", "eletrônico","paciente","(pep)"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/014/index.html">
+						<div class="card-image">
+							<img src="imagens/014/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Prontuário Eletrônico do Paciente (PEP)</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "015", "15", "informática", "otimização","interativa","resolvendo","problemas","reais","otimização","meio","interação","Homem-Computador"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/015/index.html">
+						<div class="card-image">
+							<img src="imagens/015/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Otimização Interativa – resolvendo problemas reais de otimização por meio de interação Homem-Computador</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "016", "16", "informática", "visualizando","informações","terceiro","milênio"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/016/index.html">
+						<div class="card-image">
+							<img src="imagens/016/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Visualizando Informações no Terceiro Milênio</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "017", "17", "informática", "sistema","recomendação","apoio","decisão","compra","e-commerce"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/017/index.html">
+						<div class="card-image">
+							<img src="imagens/017/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Sistema de recomendação para apoio à decisão de compra em e-commerce</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "018", "18", "informática", "recomendação","atividades","usuários","baseada","big","data","social"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/018/index.html">
+						<div class="card-image">
+							<img src="imagens/018/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Recomendação de atividades aos usuários baseada em 'Big Data' social</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "019", "19", "informática", "método","priorizar","postagens","timelines","twitter","facebook"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/019/index.html">
+						<div class="card-image">
+							<img src="imagens/019/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Método para priorizar postagens das 'Timelines' do Twitter e Facebook</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "020", "20", "informática", "análise","sentimento","textos capturados","redes","sociais"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/020/index.html">
+						<div class="card-image">
+							<img src="imagens/020/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Análise de sentimento em textos capturados em redes sociais</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "021", "21", "informática", "utilização","wikipédia","auxiliar","processamento","consultas","web"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/021/index.html">
+						<div class="card-image">
+							<img src="imagens/021/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Utilização da Wikipédia para Auxiliar o Processamento de Consultas na Web</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Desconhecido</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "022", "22", "saúde", "modelagem","computacional","neurociência", "abordagem","multidisciplinar"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/022/index.html">
+						<div class="card-image">
+							<img src="imagens/022/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modelagem computacional em neurociência: uma abordagem multidisciplinar</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "023", "23", "informática", "algoritmos","grafos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/023/index.html">
+						<div class="card-image">
+							<img src="imagens/023/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Algoritmos e Grafos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "024", "24", "engenharia", "algoritmos","evolutivos","calibração","multivariada"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/024/index.html">
+						<div class="card-image">
+							<img src="imagens/024/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Algoritmos Evolutivos para Calibração Multivariada</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "025", "25", "informática", "aplicando","meta-heurísticas","otimização","engenharia","software"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/025/index.html">
+						<div class="card-image">
+							<img src="imagens/025/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Aplicando Meta-heurísticas para Otimização em Engenharia de Software</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "026", "26", "engenharia", "aplicação","visão","computacional","auxílio","diagnóstico","imagens","reconhecimento","biométrico"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/026/index.html">
+						<div class="card-image">
+							<img src="imagens/026/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Aplicação de Visão Computacional no Auxílio ao Diagnóstico por Imagens e Reconhecimento Biométrico</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "027", "27", "informática", "aprendizado","máquina","mineração","dados","aplicações","interdisciplinares"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/027/index.html">
+						<div class="card-image">
+							<img src="imagens/027/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Aprendizado de Máquina e Mineração de Dados com Aplicações Interdisciplinares</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "028", "28", "informática", "cgtravel","computação","grade","transporte","alta","velocidade"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/028/index.html">
+						<div class="card-image">
+							<img src="imagens/028/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>CGTravel - Computação em Grade com Transporte de Alta Velocidade</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "029", "29", "educação", "comunidades","virtuais","semânticas","salas","aula","interativas"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/029/index.html">
+						<div class="card-image">
+							<img src="imagens/029/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Comunidades Virtuais Semânticas em Salas de Aula Interativas</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "030", "30", "meio ambiente", "desenvolvido","técnicas","computacionais","inventário","florestal"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/030/index.html">
+						<div class="card-image">
+							<img src="imagens/030/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Desenvolvido de Técnicas Computacionais para Inventário Florestal</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Meio Ambiente</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "031", "31", "logística", "desenvolvimento","labpl"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/031/index.html">
+						<div class="card-image">
+							<img src="imagens/031/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Desenvolvimento do LabPL</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "032", "32", "engenharia", "detecção","diagnóstico","falhas","plantas","industriais","empregando","técnicas","classificação","padrões","seleção","variáveis"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/032/index.html">
+						<div class="card-image">
+							<img src="imagens/032/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Detecção e Diagnóstico de Falhas em Plantas Industriais Empregando Técnicas de Classificação de Padrões e Seleção de Variáveis</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "033", "33", "informática", "definição","implementação","análise","recursos","teste","validação"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/033/index.html">
+						<div class="card-image">
+							<img src="imagens/033/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Definição, Implementação e Análise de Recursos de Teste e Validação</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "034", "34", "educação", "ensino","distância"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/034/index.html">
+						<div class="card-image">
+							<img src="imagens/034/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Ensino a Distância</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "035", "35", "informática", "estruturas","algoritmos","teoria","grafos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/035/index.html">
+						<div class="card-image">
+							<img src="imagens/035/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Estruturas e Algoritmos em Teoria dos Grafos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "036", "36", "informática", "estudo","caracterizações","algoritmos","problemas","grafos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/036/index.html">
+						<div class="card-image">
+							<img src="imagens/036/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Estudo de Caracterizações e Algoritmos para Problemas em Grafos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>	
+		<div id="proj" class="row" data-groups='["todas", "037", "37", "informática", "estudo","definição","processo","teste","software","micro","pequenas","empresas","ti"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/037/index.html">
+						<div class="card-image">
+							<img src="imagens/037/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Estudo e Definição de Processo de Teste de Software para Micro e Pequenas Empresas de TI</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "038", "38", "informática", "estudo","desenvolvimento","técnicas","verificação","validação","software","ferramentas","relacionadas","centro","tecnologia","software","inf","ufg"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/038/index.html">
+						<div class="card-image">
+							<img src="imagens/038/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Estudo e Desenvolvimento de Técnicas de Verificação e Validação de Software e Ferramentas Relacionadas para o Centro de Tecnologia de Software do INF/UFG</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "039", "39", "informática", "experimentação","futuro","internet","brasil","europa","fibre"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/039/index.html">
+						<div class="card-image">
+							<img src="imagens/039/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Experimentação no Futuro da Internet entre Brasil e Europa - Fibre</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "040", "40", "saúde", "estudo","comportamento","globo","ocular","íris","humana","perante","utilização","drogas","ilícitas","alcool","criação","base","vídeos","pesquisas","científicas"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/040/index.html">
+						<div class="card-image">
+							<img src="imagens/040/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Estudo do Comportamento do Globo ocular e da Íris Humana Perante a Utilização de Drogas Ilícitas, do Alcool e a Criação de uma base de vídeos para pesquisas científicas</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "041", "41", "informática", "facilitação","discurso","online","resolução","criativa","colaborativa","problemas","visando","inovação"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/041/index.html">
+						<div class="card-image">
+							<img src="imagens/041/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Facilitação do Discurso Online na Resolução Criativa e Colaborativa de Problemas Visando a Inovação</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "042", "42", "informática", "grafos","bem","cobertos","grafos","equiemparelháveis"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/042/index.html">
+						<div class="card-image">
+							<img src="imagens/042/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Grafos Bem-Cobertos e Grafos Equiemparelháveis</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "043", "43", "informática", "grafos","bem","cobertos","p-regulares-estáveis"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/043/index.html">
+						<div class="card-image">
+							<img src="imagens/043/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Grafos Bem-Cobertos P-Regulares-Estáveis</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "044", "44", "informática", "gt-ater","(aceleração","transporte","dados","emprego","redes","circuitos","dinâmicos)"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/044/index.html">
+						<div class="card-image">
+							<img src="imagens/044/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>GT-ATER (Aceleração do Transporte de Dados com o Emprego de Redes de Circuitos Dinâmicos)</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "045", "45", "informática", "heurísticas","meta-heurísticas","aplicadas","problemas","complexos","modelados","grafos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/045/index.html">
+						<div class="card-image">
+							<img src="imagens/045/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Heurísticas e Meta-Heurísticas Aplicadas a Problemas Complexos Modelados por Grafos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "046", "46", "saúde", "inteligencia","artificial","medicina","aplicação","raciocínio","baseado","caso","visão","computacional","auxílio","diagnóstico","pneumonias","infância"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/046/index.html">
+						<div class="card-image">
+							<img src="imagens/046/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Inteligencia Artificial na Medicina: Aplicação de Raciocínio Baseado em Caso e Visão Computacional no Auxílio ao Diagnóstico de Pneumonias na Infância</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "047", "47", "educação", "mediação","docente","resolução criativa","colaborativa","problemas","ensino","computação"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/047/index.html">
+						<div class="card-image">
+							<img src="imagens/047/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Mediação Docente na Resolução Criativa e Colaborativa de Problemas no Ensino de Computação</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "048", "48", "educação", "metáfora","learning","learn","together","visual","language","social","orchestration","educational","activities","projeto","realizado","universidade","exeter","conjunto","outros","países"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/048/index.html">
+						<div class="card-image">
+							<img src="imagens/048/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Metáfora - Learning to Learn Together: a Visual Language for Social Orchestration of Educational Activities. Projeto Realizado pela Universidade de Exeter em Conjunto com Outros Países</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "049", "49", "informática", "metodologias","integração","informações","armazenadas","banco","dados","web"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/049/index.html">
+						<div class="card-image">
+							<img src="imagens/049/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Metodologias de Integração de Informações Armazenadas em Banco de Dados / Web</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "050", "50", "informática", "middleware","computação","ubíqua","contexto","internet","futuro"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/050/index.html">
+						<div class="card-image">
+							<img src="imagens/050/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Middleware para Computação Ubíqua no Contexto da Internet do Futuro</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "051", "51", "engenharia", "modelagem","análise","sistemas","proteção","redes","distribuição","energia","elétrica","presença","geradores","distribuídos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/051/index.html">
+						<div class="card-image">
+							<img src="imagens/051/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modelagem e Análise de Sistemas de Proteção de Redes de Distribuição de Energia Elétrica na Presença de Geradores Distribuídos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "052", "52", "saúde", "modelagem","raciocínio","hibridos","informação","contextual","sistemas","software","ubíquos","estudo","caso","saúde"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/052/index.html">
+						<div class="card-image">
+							<img src="imagens/052/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modelagem e Raciocínio Hibridos de Informação Contextual em Sistemas de Software Ubíquos: Estudo de Caso em Saúde</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "053", "53", "logística", "modelagem","simulação","tráfego","ideal","urbano"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/053/index.html">
+						<div class="card-image">
+							<img src="imagens/053/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modelagem e Simulação de Tráfego Ideal Urbano</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "054", "54", "informática", "modeling","realizing","user-centric","communication","services"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/054/index.html">
+						<div class="card-image">
+							<img src="imagens/054/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Modeling and Realizing User-Centric Communication Services</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "055", "55", "informática", "models@run.time","self-adaptive","pervasive","systems","enabling","user-in-the-loop", "requeriment-awareness", "interoperability","ad hoc","settings"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/055/index.html">
+						<div class="card-image">
+							<img src="imagens/055/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Models@run.time for Self-Adaptive Pervasive Systems: Enabling User-in-the-Loop, Requeriment-Awareness, and Interoperability in AD HOC Settings</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "056", "56", "informática", "motor","recomendação","rádio","on-line"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/056/index.html">
+						<div class="card-image">
+							<img src="imagens/056/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Motor de Recomendação para uma Rádio On-line</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "057", "57","saúde","métodos","computacionais","aplicados","análises","clínicas"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/057/index.html">
+						<div class="card-image">
+							<img src="imagens/057/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Métodos Computacionais Aplicados à Análises Clínicas</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "058", "58","meio ambiente","método","automatizado","inventário","florestal","câmeras","profundidade","redes","neurais","artificiais"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/058/index.html">
+						<div class="card-image">
+							<img src="imagens/058/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Método Automatizado de Inventário Florestal com Câmeras de Profundidade e Redes Neurais Artificiais</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Meio Ambiente</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "059", "59","informática","novas","fronteiras","internet","infraestrutura","aplicações"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/059/index.html">
+						<div class="card-image">
+							<img src="imagens/059/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Novas Fronteiras da Internet: Infraestrutura e Aplicações</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "060", "60","informática","nuvem","verde","plataforma","apoio","uso","racional","energia","sistemas","computação","nuvem"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/060/index.html">
+						<div class="card-image">
+							<img src="imagens/060/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Nuvem Verde: Uma Plataforma para Apoio ao Uso Racional de Energia em Sistemas de Computação em Nuvem</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "061", "61", "informática", "otimização","aplicações"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/061/index.html">
+						<div class="card-image">
+							<img src="imagens/061/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Otimização e suas Aplicações</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "062", "62", "engenharia", "otimização","processo","restabelecimento","energia","utilizando","algoritmos","multi-objetivo"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/062/index.html">
+						<div class="card-image">
+							<img src="imagens/062/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Otimização do Processo de Restabelecimento de Energia Utilizando Algoritmos Multi-objetivo</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "063", "63","educação","pensamento","computacional","conceptualização","avaliação","impacto","apredizagem","universitários","informática"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/063/index.html">
+						<div class="card-image">
+							<img src="imagens/063/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Pensamento Computacional: Conceptualização, Avaliação e Impacto na Apredizagem em Universitários de Informática</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "064", "64","informática","plataforma","geoprocessamento","distribuído","processamento","consultas","espaciais","complexas","grande","volume","dados"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/064/index.html">
+						<div class="card-image">
+							<img src="imagens/064/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Plataforma de Geoprocessamento Distribuído para Processamento de Consultas Espaciais Complexas em Grande Volume de Dados</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "065", "65","informática","plataforma","middleware","geoprocessamento","distribuido","escalável"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/065/index.html">
+						<div class="card-image">
+							<img src="imagens/065/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Plataforma de Middleware Geoprocessamento Distribuido e Escalável</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	<div id="proj" class="row" data-groups='["todas", "066", "66", "Saúde", "predição","eficiente","estrutura","proteínas","estudo","análise","proposta","representações","técnicas","estatísticas","meta-heurísticas"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/066/index.html">
+						<div class="card-image">
+							<img src="imagens/066/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Predição Eficiente de Estrutura de Proteínas: estudo, análise e proposta de representações e técnicas estatísticas e meta-heurísticas</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "067", "67", "informática", "procad-nf","novas","fronteiras","internet","infraestrutura","aplicações"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/067/index.html">
+						<div class="card-image">
+							<img src="imagens/067/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Procad-NF: Novas Fronteiras da Internet: Infraestrutura e Aplicações</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "068", "68","informática","processamento","paralelo","aplicado","bioinformática"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/068/index.html">
+						<div class="card-image">
+							<img src="imagens/068/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Processamento Paralelo Aplicado à Bioinformática</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "069", "69","informática","processo","técnicas","teste","contexto","sistemas","embarcados","críticos"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/069/index.html">
+						<div class="card-image">
+							<img src="imagens/069/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Processo e Técnicas de Teste no Contexto de Sistemas Embarcados Críticos</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "070", "70","informática","provisão","contexto","distribuída","baseada","escopo","computação","sensível","contexto"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/070/index.html">
+						<div class="card-image">
+							<img src="imagens/070/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Provisão de Contexto Distribuída Baseada em Escopo para Computação Sensível ao Contexto</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "071", "71", "informática", "recuperação","informação","extração","conhecimento","ambientes","distribuidos","heterogênios"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/071/index.html">
+						<div class="card-image">
+							<img src="imagens/071/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Recuperação de Informação e Extração de Conhecimento em Ambientes Distribuidos Heterogênios</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "072", "72", "informática", "redes","estudos", "modelos", "métodos","otimização","computação","distribuida"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/072/index.html">
+						<div class="card-image">
+							<img src="imagens/072/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Redes: Estudos, Modelos, Métodos de Otimização e Computação Distribuida</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "073", "73","educação","resolução","entidade","bibliotecas","digitais"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/073/index.html">
+						<div class="card-image">
+							<img src="imagens/073/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Resolução de Entidade em Bibliotecas Digitais</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "074", "74","saúde","plataforma","sciads","sistema","computacional","inteligente","assistência","domiciliar","saúde"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/074/index.html">
+						<div class="card-image">
+							<img src="imagens/074/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>SCIADS: Sistema Computacional Inteligente de Assistência Domiciliar à Saúde</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Saúde</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "075", "75","logística","sistema","apoio","tomada","decisão","eficiente","atendimento","ocorrências"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/075/index.html">
+						<div class="card-image">
+							<img src="imagens/075/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Sistema de Apoio à Tomada de Decisão Eficiente de Atendimento a Ocorrências</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Loǵistica</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	<div id="proj" class="row" data-groups='["todas", "076", "76", "informática", "sistemas","embarcados","críticos","aplicações","segurança","agricultura"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/076/index.html">
+						<div class="card-image">
+							<img src="imagens/076/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Sistemas Embarcados Críticos: Aplicações em Segurança e Agricultura</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "077", "77", "informática", "smartandroid"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/077/index.html">
+						<div class="card-image">
+							<img src="imagens/077/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>SmartAndroid</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "078", "78","engenharia","técnicas","apoio","verificação","funcional","projetos","circuitos","digitais"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/078/index.html">
+						<div class="card-image">
+							<img src="imagens/078/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Técnicas de Apoio para a Verificação Funcional em Projetos de Circuitos Digitais</h7>
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Engenharia</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "079", "79","informática","técnicas","reconhecimento","padrões","problemas","visão","computacional","análise","multivariada"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/079/index.html">
+						<div class="card-image">
+							<img src="imagens/079/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Técnicas de Reconhecimento de Padrões para Problemas de Visão Computacional e Análise Multivariada</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "080", "80","educação","framework","diálogo","ensino","computação"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/080/index.html">
+						<div class="card-image">
+							<img src="imagens/080/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Um Framework Diálogo para o Ensino de Computação</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Educação</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "081", "81","informática","uma","proposta","infraestrutura","computacional","baseada","redes","sensores","sem","fio","monitoramento","intercepção","luminosa","pastagens"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/081/index.html">
+						<div class="card-image">
+							<img src="imagens/081/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Uma Proposta de Infraestrutura Computacional Baseada em Redes de Sensores Sem Fio para o Monitoramento da Intercepção Luminosa em Pastagens</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Informática</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div id="proj" class="row" data-groups='["todas", "082", "82","logística","vigilância","eletrônica","enfrentamento","tráfico","drogas"]'>
+			<div class="col s12 m8 l10">
+				<div class="card">
+					<a href="projetos/082/index.html">
+						<div class="card-image">
+							<img src="imagens/082/cabecalho.jpg">
+						</div>
+						<div class="card-content black-text">
+							<h7>Vigilância Eletrônica para Enfrentamento do Tráfico de Drogas</h7> 
+							<div class="fundo-descricao">
+								<p>Área de Aplicação: Logística</p>
+								<p>Status: Em Andamento</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="footer-copyright">
+			<a href="http://apoema.inf.ufg.br/index.html" target="_blank"><img src="imagens/footer.png"/></a>
+			<p>Copyright © 2015 Apoema Todos os direitos reservados.
+				<a class="politica" href="http://apoema.inf.ufg.br/politica-privacidade.html" target="_blank">Política de Privacidade</a>
+				<a class="contato" href="http://apoema.inf.ufg.br/contato.html" target="_blank">Contato<a></p>
+				</div>
+			</footer>
+		</body>
+		</html>
